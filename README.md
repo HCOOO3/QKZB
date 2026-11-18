@@ -69,6 +69,10 @@
 
 **环境**：Android 7.0+（minSdk 24），国行无 GMS 可用。
 
+### 鸿蒙 7 / 浏览器
+
+鸿蒙 NEXT 不再支持 APK，仓库带一个 PWA 版本：开启 GitHub Pages 后访问 <https://hcooo3.github.io/QKZB/>，用浏览器「添加到桌面」。详见 [PWA.md](PWA.md)。
+
 ### 配置 AI（可选）
 
 设置 → 01 多模态接口配置 → 选 DeepSeek / Gemini / 通义千问等 → 填 Base URL、模型名、API Key → 保存。
@@ -90,7 +94,7 @@ Key 会用 Android Keystore 加密保存在本机，不写入备份、迁移码�
 - Android 原生壳：Java + WebView，无 Gradle，本地用 `aapt + javac + dx + apksigner` 出包
 - 前端：单页 HTML + CSS + 原生 JS，Tailwind / Chart.js 本地化，无构建步骤
 - 数据：340 条食物库（JSON，含拼音与钠），localStorage 单键存储
-- 测试：jsdom + Node，101 项断言
+- 测试：jsdom + Node，103 项断言
 - 包体：约 1.1MB
 
 ```
@@ -103,7 +107,7 @@ apk/
   src/main/java/  原生壳（相机、相册、计步、提醒、小组件、Keystore）
   src/main/res/   图标、布局、主题
 build.sh          本地一键出包
-test-core.js      101 项 jsdom 测试
+test-core.js      103 项 jsdom 测试
 ```
 
 ## 本地构建

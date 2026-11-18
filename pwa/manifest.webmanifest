@@ -1,0 +1,21 @@
+{
+  "name": "轻卡账本 · KCAL // MONO",
+  "short_name": "轻卡账本",
+  "description": "本地优先的中式热量与营养账本：AI 识菜、340 条食物库、周热量池、月度报告。",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#F2F4F5",
+  "theme_color": "#D9542F",
+  "categories": ["health", "food", "lifestyle"],
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

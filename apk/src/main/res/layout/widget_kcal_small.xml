@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widgetSmallRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@drawable/widget_bg">
+
+    <TextView
+        android:id="@+id/widgetSmallLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="今日还可"
+        android:textColor="#6C767B"
+        android:textSize="9sp"
+        android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/widgetSmallValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="—"
+        android:textColor="#14191C"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/widgetSmallUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="kcal"
+        android:textColor="#97A1A5"
+        android:textSize="9sp" />
+</LinearLayout>

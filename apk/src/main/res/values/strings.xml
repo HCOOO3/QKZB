@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">轻卡账本</string>
+    <color name="ic_launcher_background">#1B2226</color>
+    <color name="brand_orange">#D9542F</color>
+    <color name="window_bg">#F2F4F5</color>
+    <color name="bar_bg">#1B2226</color>
+</resources>

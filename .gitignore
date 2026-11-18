@@ -1,0 +1,5 @@
+build/
+apk/src/main/assets/www/
+*.apk
+keystore/
+platform/*.jar

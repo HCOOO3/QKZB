@@ -1,0 +1,356 @@
+/* 轻卡账本 · 样式（从单文件拆出） */
+:root {
+      --bg-base: #F2F4F5;
+      --bg-card: #FFFFFF;
+      --ink-primary: #14191C;
+      --ink-muted: #6C767B;
+      --border-hairline: #E3E8EA;
+      --accent-orange: #D9542F;
+      --accent-blue: #2F7A6B;
+    }
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background-color: var(--bg-base);
+      color: var(--ink-primary);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    .font-mono-num {
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-variant-numeric: tabular-nums;
+    }
+    .nordic-card {
+      background: #FFFFFF;
+      border: 1.5px solid #1B2226;
+      border-radius: 14px;
+      box-shadow: 0 3px 0 #1B2226;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .nordic-card-flat {
+      background: #FFFFFF;
+      border: 1px solid #D6DEE1;
+      border-radius: 12px;
+    }
+    .nordic-btn-primary {
+      background: #14191C;
+      color: #FFFFFF;
+      border: 1.5px solid #14191C;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.15s ease;
+    }
+    .nordic-btn-primary:hover {
+      background: #2B3337;
+    }
+    .nordic-btn-primary:active {
+      transform: translateY(1px);
+    }
+    .nordic-btn-orange {
+      background: #D9542F;
+      color: #FFFFFF;
+      border: 1.5px solid #14191C;
+      box-shadow: 0 2px 0 #14191C;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: all 0.15s ease;
+    }
+    .nordic-btn-orange:hover {
+      background: #B94726;
+    }
+    .nordic-btn-orange:active {
+      transform: translateY(2px);
+      box-shadow: 0 0 0 #14191C;
+    }
+    .nordic-btn-blue {
+      background: #2F7A6B;
+      color: #FFFFFF;
+      border: 1.5px solid #14191C;
+      box-shadow: 0 2px 0 #14191C;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.15s ease;
+    }
+    .nordic-pill-active {
+      background: #14191C;
+      color: #FFFFFF;
+      border-color: #14191C;
+    }
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: #E9EEF0;
+      border-radius: 999px;
+      outline: none;
+      border: 1px solid #14191C;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #D9542F;
+      border: 2px solid #14191C;
+      cursor: pointer;
+    }
+    .dot-matrix-bg {
+      background-image: radial-gradient(#DDE4E7 1px, transparent 1px);
+      background-size: 14px 14px;
+    }
+    @keyframes pulse-ring {
+      0% { opacity: 0.4; transform: scale(0.98); }
+      50% { opacity: 1; transform: scale(1.01); }
+      100% { opacity: 0.4; transform: scale(0.98); }
+    }
+    .scanning-anim {
+      animation: pulse-ring 1.4s infinite ease-in-out;
+    }
+
+/* APK 小屏适配：顶部栏改为两行，隐藏重复的拍照入口 */
+    @media (max-width: 767px) {
+      header > div:first-child { flex-wrap: wrap; row-gap: 8px; }
+      header > div:first-child > div:first-child { flex: 1 1 100%; min-width: 0; }
+      header > div:first-child > div:last-child { display: none; }
+      header img { width: 32px !important; height: 32px !important; }
+      #headerEngineBadge { font-size: 10px; padding: 1px 6px; white-space: nowrap; }
+      #btnOpenOfflineDictTop { padding: 6px 8px; font-size: 11px; white-space: nowrap; }
+    }
+    /* ---- 视觉打磨 ---- */
+    input[data-staged-name-idx]:focus {
+      background: #F4F7F8;
+    }
+    nav[aria-label="移动端底部导航"] {
+      padding-bottom: calc(6px + env(safe-area-inset-bottom));
+    }
+    @keyframes kcalFadeUp {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* 小转圈：一句话补录的加载态（不依赖 tailwind 的 animate-spin） */
+    @keyframes kcalSpin { to { transform: rotate(360deg); } }
+    .kcal-spin {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border: 2px solid currentColor;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: kcalSpin .7s linear infinite;
+      vertical-align: -2px;
+    }
+    #detectedItemsContainer > div { animation: kcalFadeUp .18s ease-out both; }
+    /* 设置页折叠 */
+    .settings-header {
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      transition: opacity .15s ease;
+    }
+    .settings-header:active { opacity: .7; }
+    .settings-header:focus-visible { outline: 2px solid #D9542F; outline-offset: 4px; border-radius: 8px; }
+    .settings-header h2::after {
+      content: '▾';
+      margin-left: .5rem;
+      font-size: .7rem;
+      color: #97A1A5;
+      display: inline-block;
+      transition: transform .15s ease;
+    }
+    .settings-collapsed .settings-header h2::after { content: '▸'; }
+    .settings-collapsed .settings-header { border-bottom-color: transparent !important; padding-bottom: .25rem !important; }
+    .settings-collapsed .settings-body { display: none !important; }
+    /* 抽屉动画 */
+    .sheet-panel { animation: sheetUp .22s cubic-bezier(.2, .8, .3, 1) both; }
+    @keyframes sheetUp {
+      from { transform: translateY(18px); opacity: .5; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    /* 标题尽量不出现单字孤行 */
+    section h2 { text-wrap: balance; }
+    /* 底部导航不再压住最后一张卡片 */
+    @media (max-width: 767px) {
+      main { padding-bottom: 92px; }
+    }
+    /* 顶栏不再半透明，避免正文透出来显脏 */
+    header {
+      background-color: #F2F4F5 !important;
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+    }
+    /* 页面本身不做弹性过卷，避免滑到底时整页被拉伸 */
+    html, body { overscroll-behavior: none; }
+    /* 顶栏滚动阴影 */
+    header.is-scrolled { box-shadow: 0 3px 14px -8px rgba(15, 15, 16, .65); }
+    /* 底部导航：选中态微光 + 按下反馈 */
+    .nav-tab-btn { transition: transform .12s ease, background-color .15s ease, color .15s ease; }
+    .nav-tab-btn:active { transform: scale(.94); }
+    .nav-tab-btn[data-active="1"] { box-shadow: 0 6px 18px -10px rgba(255, 85, 0, .95); }
+    /* 穿戴卡片：下拉单独占一行，标题不再被压成竖排 */
+    @media (max-width: 767px) {
+      #wearableSourceSelect { flex: 0 0 100%; margin-top: 6px; }
+    }
+    /* 小屏可读性：10/11px 的小字各抬一档 */
+    @media (max-width: 767px) {
+      [class~="text-[10px]"] { font-size: 11px !important; }
+      [class~="text-[11px]"] { font-size: 12px !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #detectedItemsContainer > div { animation: none; }
+    }
+    html { -webkit-text-size-adjust: 100%; }
+
+    /* ---- 深色工作台转白底 ---- */
+    /* 体脂秤工作台：从整块黑底改成白底表单 */
+    #bodyScaleWorkbenchCard {
+      background: #FFFFFF !important;
+      color: var(--kcal-ink) !important;
+      border: 1px solid var(--kcal-line) !important;
+    }
+    #bodyScaleWorkbenchCard .text-white,
+    #bodyScaleWorkbenchCard h3,
+    #bodyScaleWorkbenchCard .text-zinc-200 { color: var(--kcal-ink) !important; }
+    #bodyScaleWorkbenchCard .text-zinc-400,
+    #bodyScaleWorkbenchCard .text-zinc-500 { color: #6C767B !important; }
+    #bodyScaleWorkbenchCard .text-zinc-300,
+    #bodyScaleWorkbenchCard .text-zinc-600 { color: #5C666B !important; }
+    #bodyScaleWorkbenchCard .bg-zinc-900,
+    #bodyScaleWorkbenchCard .bg-zinc-950 { background: #F7F9FA !important; }
+    #bodyScaleWorkbenchCard .border-zinc-800,
+    #bodyScaleWorkbenchCard .border-zinc-700 { border-color: var(--kcal-line) !important; }
+    #bodyScaleWorkbenchCard input { color: var(--kcal-ink) !important; }
+    /* 油水系数拨片：白底，选中用橙框 */
+    #scanOilBlock {
+      background: #F7F9FA !important;
+      color: var(--kcal-ink) !important;
+      border: 1px solid var(--kcal-line) !important;
+    }
+    #scanOilBlock .text-zinc-400,
+    #scanOilBlock .text-zinc-500 { color: #6C767B !important; }
+    #scanOilBlock .text-zinc-300 { color: #5C666B !important; }
+    #scanOilBlock .bg-zinc-900 { background: #FFFFFF !important; }
+    #scanOilBlock .bg-zinc-800 { background: #FDECE6 !important; }
+    #scanOilBlock .border-zinc-700,
+    #scanOilBlock .border-zinc-900 { border-color: var(--kcal-line) !important; }
+    #scanOilBlock .text-emerald-400 { color: #3F7D5A !important; }
+    #scanOilBlock .text-amber-400 { color: #A9761F !important; }
+    #scanOilBlock .text-rose-400 { color: #C2453F !important; }
+    /* 设置页「换机迁移」工具卡：改成和别的设置卡一样的白底 */
+    .settings-toolbox {
+      background: #FFFFFF !important;
+      color: var(--kcal-ink) !important;
+      border: 1px solid var(--kcal-line) !important;
+    }
+    .settings-toolbox .text-white,
+    .settings-toolbox h2 { color: var(--kcal-ink) !important; }
+    .settings-toolbox .text-zinc-400 { color: #6C767B !important; }
+    .settings-toolbox .text-zinc-300 { color: #5C666B !important; }
+    .settings-toolbox .text-zinc-200 { color: var(--kcal-ink) !important; }
+    .settings-toolbox .bg-zinc-900,
+    .settings-toolbox .bg-zinc-950 { background: #F7F9FA !important; }
+    .settings-toolbox .border-zinc-800,
+    .settings-toolbox .border-zinc-700 { border-color: var(--kcal-line) !important; }
+    .settings-toolbox input { color: var(--kcal-ink) !important; }
+    /* 原生 range 统一橙色滑块，拖动更跟手 */
+    input[type="range"] { touch-action: pan-y; }
+
+/* ---- 2.1 冷白 · 石墨 · 朱砂（按钮统一为三种层级） ---- */
+    :root {
+      --kcal-paper: #F2F4F5;
+      --kcal-card: #FFFFFF;
+      --kcal-ink: #14191C;
+      --kcal-muted: #6C767B;
+      --kcal-line: #E3E8EA;
+      --kcal-accent: #D9542F;
+      --kcal-accent-deep: #B94726;
+      --kcal-teal: #2F7A6B;
+      --kcal-danger: #B23A3F;
+      --kcal-faint: #97A1A5;
+      --kcal-warn: #E0A23A;
+      --kcal-success: #4C8C6B;
+      --kcal-sage: #3F7D5A;
+      --kcal-radius: 16px;
+      --kcal-radius-sm: 10px;
+      --kcal-amber: #A9761F;
+      --kcal-carb: #7E8D96;
+    }
+    html, body { background: var(--kcal-paper) !important; }
+    body { color: var(--kcal-ink); }
+    header { background: var(--kcal-paper) !important; border-bottom: 1px solid var(--kcal-line) !important; box-shadow: none !important; }
+    header.is-scrolled { box-shadow: 0 6px 18px -16px rgba(20, 25, 28, .35) !important; }
+
+    /* 卡片：干净白卡 + 发丝边 + 极轻投影 */
+    .nordic-card:not(.bg-zinc-950):not(.bg-zinc-900):not(.bg-black) {
+      background: var(--kcal-card) !important;
+      border: 1px solid var(--kcal-line) !important;
+      box-shadow: 0 16px 30px -30px rgba(20, 25, 28, .45) !important;
+      border-radius: var(--kcal-radius) !important;
+    }
+    .nordic-card-flat { background: var(--kcal-card) !important; border-color: var(--kcal-line) !important; }
+
+    /* 按钮三层：朱砂主按钮 / 墨色次按钮 / 白底描边第三层 */
+    .nordic-btn-primary { background: var(--kcal-ink) !important; border: 1px solid var(--kcal-ink) !important; box-shadow: none !important; border-radius: var(--kcal-radius-sm) !important; }
+    .nordic-btn-orange { background: var(--kcal-accent) !important; border: 1px solid var(--kcal-accent) !important; box-shadow: none !important; border-radius: var(--kcal-radius-sm) !important; }
+    .nordic-btn-orange:hover { background: var(--kcal-accent-deep) !important; }
+    .nordic-btn-blue { background: var(--kcal-teal) !important; border: 1px solid var(--kcal-teal) !important; box-shadow: none !important; border-radius: var(--kcal-radius-sm) !important; }
+    .nordic-pill-active { background: var(--kcal-ink) !important; border-color: var(--kcal-ink) !important; }
+
+    /* 迁移码里的小按钮、粘贴按钮：全部退成白底描边，避免同屏三种填充色 */
+    button.bg-zinc-800,
+    button.bg-\[\#2F7A6B\] {
+      background: #FFFFFF !important;
+      color: var(--kcal-ink) !important;
+      border: 1px solid var(--kcal-line) !important;
+    }
+    button.bg-zinc-800:hover,
+    button.bg-\[\#2F7A6B\]:hover { background: #F7F9FA !important; }
+    #btnTriggerImportFile { background: #FFFFFF !important; color: var(--kcal-ink) !important; border: 1px solid var(--kcal-line) !important; }
+    #btnTriggerImportFile:hover { background: #F7F9FA !important; }
+    #btnCopyBackupString { color: var(--kcal-ink) !important; }
+    #btnShowApkGuideModal { color: var(--kcal-accent) !important; }
+
+    /* 输入与细边框 */
+    input, select, textarea { border-color: var(--kcal-line) !important; background-color: #FFFFFF; }
+    .border-zinc-900, .border-zinc-800, .border-zinc-700 { border-color: var(--kcal-line) !important; }
+    .border-zinc-300 { border-color: #DCE3E6 !important; }
+    header .bg-white { border-color: var(--kcal-line) !important; box-shadow: none !important; }
+
+    /* 底部导航：石墨，不再纯黑 */
+    nav[aria-label="移动端底部导航"] {
+      background: #1B2226 !important;
+      border-top: 1px solid #1B2226 !important;
+      box-shadow: 0 -10px 30px -24px rgba(20, 25, 28, .8) !important;
+    }
+    nav[aria-label="移动端底部导航"] .nav-tab-btn[data-active="1"] {
+      background: var(--kcal-accent) !important;
+      color: #FFF !important;
+      box-shadow: 0 6px 16px -12px rgba(217, 84, 47, .9) !important;
+    }
+
+    /* 背景点阵关闭，保持干净 */
+    .dot-matrix-bg { background-image: none !important; }
+
+    /* 滑块 */
+    input[type="range"] { border: 0 !important; background: #E3E8EA !important; }
+    input[type="range"]::-webkit-slider-thumb { background: var(--kcal-accent) !important; border: 2px solid #FFF !important; box-shadow: 0 1px 4px rgba(20, 25, 28, .2) !important; }
+
+    /* 中性色统一冷灰 */
+    .bg-zinc-950 { background-color: #1B2226 !important; }
+    .bg-zinc-900 { background-color: #232B2F !important; }
+    .bg-zinc-800 { background-color: #2E373B !important; }
+    .bg-zinc-100 { background-color: #EEF2F4 !important; }
+    .bg-zinc-50 { background-color: #F7F9FA !important; }
+    .bg-zinc-200 { background-color: #E5EBED !important; }
+    .bg-white { background-color: #FFFFFF !important; }
+
+    /* 文字层级 */
+    .text-zinc-950, .text-zinc-900 { color: var(--kcal-ink); }
+    .text-zinc-600 { color: #5C666B; }
+    .text-zinc-500 { color: var(--kcal-muted); }
+    .text-zinc-400 { color: #97A1A5; }

@@ -50,11 +50,16 @@
 
 ## 截图
 
-> 当前是占位图，替换为真实截图即可（见 `docs/screenshots/README.md`）。
+> 截图使用演示数据，不含真实账本、体重或 API Key。
 
-| 看板 | 手动添加 | AI 总结 | 月报 |
-| --- | --- | --- | --- |
-| ![](docs/screenshots/dashboard.png) | ![](docs/screenshots/manual-add.png) | ![](docs/screenshots/ai-summary.png) | ![](docs/screenshots/month-report.png) |
+<table>
+  <tr>
+    <td align="center"><img src="docs/screenshots/dashboard.png" width="300"><br><sub>今日看板</sub></td>
+    <td align="center"><img src="docs/screenshots/manual-add.png" width="300"><br><sub>手动添加食物</sub></td>
+    <td align="center"><img src="docs/screenshots/ai-summary.png" width="300"><br><sub>AI 日总结</sub></td>
+    <td align="center"><img src="docs/screenshots/month-report.png" width="300"><br><sub>月度报告</sub></td>
+  </tr>
+</table>
 
 ## 安装
 

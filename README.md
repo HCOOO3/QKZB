@@ -71,7 +71,7 @@
 
 ### 鸿蒙 7 / 浏览器
 
-鸿蒙 NEXT 不再支持 APK，仓库带一个 PWA 版本：开启 GitHub Pages 后访问 <https://hcooo3.github.io/QKZB/>，用浏览器「添加到桌面」。详见 [PWA.md](PWA.md)。
+鸿蒙 NEXT 不再支持 APK，可直接用浏览器打开 <https://hcooo3.github.io/QKZB/>，再「添加到桌面」。详见 [PWA.md](PWA.md)。
 
 ### 配置 AI（可选）
 
